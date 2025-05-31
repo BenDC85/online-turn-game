@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Turn Game - Join & Play</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .hidden { display: none; }
+        button:disabled {
+            background-color: #cccccc;
+            color: #666666;
+            cursor: not-allowed;
+        }
+        #message-list { list-style-type: none; padding-left: 0; max-height: 200px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; margin-top: 10px;}
+        #message-list li { padding: 3px 0; font-size: 0.9em; }
+        .join-section input { margin-right: 10px; padding: 5px; }
+        .game-section p { margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <h1>Online Turn Game</h1>
+
+    <div id="join-section" class="join-section">
+        <h2>Join Game</h2>
+        <label for="user-id-input">Enter Your User ID:</label>
+        <input type="text" id="user-id-input" placeholder="e.g., PlayerBen">
+        <button id="join-game-button">Join Game</button>
+        <p id="join-message" style="color: red;"></p>
+    </div>
+
+    <div id="game-section" class="game-section hidden">
+        <p>You are: <strong id="player-id-display">Waiting for assignment...</strong> (User ID: <span id="user-id-confirm"></span>)</p>
+        <p id="socket-message">Connecting...</p>
+        <hr>
+        <h2>Game Area</h2>
+        <p>Current Turn: Player <strong id="current-turn-display">?</strong></p>
+        <button id="take-turn-button" disabled>Take My Turn</button>
+    </div>
+
+    <hr>
+
+    <div id="messages">
+        <h2>Game Log:</h2>
+        <ul id="message-list"></ul>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="client.js"></script>
+</body>
+</html>
